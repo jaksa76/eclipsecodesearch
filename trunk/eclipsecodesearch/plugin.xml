@@ -5,8 +5,8 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            name="CodeSearch Category"
-            id="CodeSearch">
+            name="CodeSearch"
+            id="org.asdf.codesearch.viewCategory">
       </category>
       <view
             name="CodeSearch View"
@@ -21,12 +21,38 @@
       <perspectiveExtension
             targetID="org.eclipse.ui.resourcePerspective">
          <view
+               id="codesearch.views.CodeSearchView"
                ratio="0.5"
-               relative="org.eclipse.ui.views.TaskList"
-               relationship="right"
-               id="codesearch.views.CodeSearchView">
+               relationship="bottom"
+               relative="org.eclipse.ui.views.Editor"
+               visible="true">
          </view>
       </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="org.asdf.codesearch.buttons"
+            targetID="codesearch.views.CodeSearchView">
+         <action
+               class="codesearch.CodeSearchAction"
+               enablesFor="*"
+               icon="icons/next.gif"
+               id="org.adsf.codesearch.buttons.next"
+               label="next"
+               style="push"
+               toolbarPath="push_group"
+               tooltip="Next Example"/>
+         <action
+               class="codesearch.CodeSearchAction"
+               enablesFor="*"
+               icon="icons/previous.gif"
+               id="org.adsf.codesearch.buttons.previous"
+               label="previous"
+               style="push"
+               toolbarPath="push_group"
+               tooltip="Previous Example"/>
+      </viewContribution>
    </extension>
 
 </plugin>
