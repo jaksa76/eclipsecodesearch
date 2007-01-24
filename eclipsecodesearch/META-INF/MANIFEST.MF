@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CodeSearch Plug-in
+Bundle-SymbolicName: org.asdf.codesearch;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: codesearch.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Eclipse-LazyStart: true
+Export-Package: codesearch,
+ codesearch.views
+Bundle-ClassPath: lib/gdata-client-1.0.jar,
+ lib/gdata-codesearch-1.0.jar,
+ .
