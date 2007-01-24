@@ -15,14 +15,12 @@ You should have a new view available in Window->Show View->Other...
 
 = Using Eclipse CodeSearch =
 
-Just type a function name or any piece of code into the search bar and pres Enter. An example  of usage of that code should appear in the minibrowser.
+Just type a function name or any piece of code into the search bar and pres Enter. An example  of usage of that code should appear in the minibrowser. Use the arrows to navigate through the proposed examples.
 
 = Future Releases =
 
-  * ability to navigate between different results
   * issuing the search from your editor
   * opening the result in a separate window
   * automatically performing the search for the word under the cursor
-
 
 
