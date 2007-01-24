@@ -62,6 +62,8 @@ public class CodeSearchView extends ViewPart {
 	private Text area;
 
 	private List<CodeSearchEntry> entries;
+	
+	private int currentSelection;
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
@@ -154,6 +156,24 @@ public class CodeSearchView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		browser.setFocus();
+		searchString.setFocus();
+	}
+
+	/**
+	 * 
+	 */
+	public void next() {
+		if (currentSelection < entries.size() - 1) {
+			loadEntry(entries.get(currentSelection++));
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public void previous() {
+		if (currentSelection > 0) {
+			loadEntry(entries.get(currentSelection--));
+		}
 	}
 }
