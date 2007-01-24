@@ -7,7 +7,7 @@ Eclipse CodeSearch is a nifty plugin for eclipse that lets you search through ex
 
 = Installation Instructions =
 
-  # Download the zip file from the downloads page
+  # Download the zip file from [http://eclipsecodesearch.googlecode.com/files/eclipsecodesearch-0.2.zip here]
   # Unzip it in your eclipse installation directory
   # Start eclipse
 
