@@ -1,6 +1,5 @@
-package codesearch;
+package codesearch.views;
 
-import codesearch.views.CodeSearchView;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
