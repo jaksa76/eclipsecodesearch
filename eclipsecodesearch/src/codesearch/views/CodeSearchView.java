@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -36,7 +37,6 @@ import org.eclipse.ui.part.ViewPart;
 
 
 // TODO add listening to selection in the editor
-// TODO add navigation for results
 public class CodeSearchView extends ViewPart {
 	CodeSearchService myService = new CodeSearchService("exampleCo-exampleApp-1");
 	
