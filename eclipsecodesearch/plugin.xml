@@ -35,7 +35,7 @@
             id="org.asdf.codesearch.buttons"
             targetID="codesearch.views.CodeSearchView">
          <action
-               class="codesearch.views.CodeSearchAction"
+               class="codesearch.views.CodeSearchView$CodeSearchAction"
                enablesFor="*"
                icon="icons/next.gif"
                id="org.adsf.codesearch.buttons.next"
@@ -44,7 +44,7 @@
                toolbarPath="navigation"
                tooltip="Next Example"/>
          <action
-               class="codesearch.views.CodeSearchAction"
+               class="codesearch.views.CodeSearchView$CodeSearchAction"
                enablesFor="*"
                icon="icons/previous.gif"
                id="org.adsf.codesearch.buttons.previous"
