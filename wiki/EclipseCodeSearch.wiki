@@ -1,8 +1,8 @@
-#summary Homepage of Eclipse CodeSearch
+#summary Homepage of Eclipse Code Search
 
 = Introduction =
 
-Eclipse CodeSearch is a nifty plugin for eclipse that lets you search through existing open source code using Google CodeSearch. If you don't know what's Google CodeSearch go to http://codesearch.google.com and type "System.out.println".
+Eclipse Code Search is a nifty plugin for eclipse that lets you search through existing open source code using Google Code Search. If you don't know what's Google Code Search go to http://codesearch.google.com and type "System.out.println".
 
 
 = Installation Instructions =
@@ -13,7 +13,7 @@ Eclipse CodeSearch is a nifty plugin for eclipse that lets you search through ex
 
 You should have a new view available in Window->Show View->Other...
 
-= Using Eclipse CodeSearch =
+= Using Eclipse Code Search =
 
 Just type a function name or any piece of code into the search bar and pres Enter. An example  of usage of that code should appear in the minibrowser. Use the arrows to navigate through the proposed examples.
 
@@ -22,5 +22,4 @@ Just type a function name or any piece of code into the search bar and pres Ente
   * issuing the search from your editor
   * opening the result in a separate window
   * automatically performing the search for the word under the cursor
-
 
