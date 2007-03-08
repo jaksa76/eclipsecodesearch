@@ -6,14 +6,14 @@ import com.google.gdata.data.codesearch.CodeSearchFeed;
 import com.google.gdata.util.ServiceException;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Proxy;
+import java.net.SocketAddress;
 import java.net.URL;
 import java.util.List;
 
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.graphics.Font;
@@ -22,8 +22,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IViewActionDelegate;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.part.ViewPart;
 
 
@@ -33,15 +31,24 @@ import org.eclipse.ui.part.ViewPart;
  *
  */
 public class CodeSearchView extends ViewPart {
-//TODO add listening to selection in the editor
+	// TODO add listening to selection in the editor
+	// TODO add big browser window
+	// TODO add search from context menu in editor
+	
+    //  TODO move this to preferences
+//    private String proxy = "proxy.zuehlke.com";
+//    private int port = 8080;
+//    private boolean useProxy = true;
+    
+	public static final String ID = "codesearch.views.CodeSearchView";
 	
 	private Text area;
 
 	private Browser browser;
 
-	private int currentSelection;
+	private int currentSelection;  // the currently loaded page of the feed
 
-	private List<CodeSearchEntry> entries;
+	private List<CodeSearchEntry> entries; // the feed entries
 
 	private Text searchString;
 
@@ -53,6 +60,10 @@ public class CodeSearchView extends ViewPart {
 	 * {@inheritDoc}
 	 */
 	public void createPartControl(Composite parent) {
+//        System.setProperty("http.proxyHost", proxy);
+//        System.setProperty("http.proxyPort", Integer.toString(port));
+//        System.setProperty("http.proxySet", Boolean.toString(useProxy));
+        
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 1;
 		parent.setLayout(gridLayout);
@@ -137,38 +148,20 @@ public class CodeSearchView extends ViewPart {
 		});
 	}
 
+	public void test() {
+		showMessage("testing");
+	}
+	
 	private void search(final String searchString) {
 		new Searcher(searchString).start();
 	}
 
 	private void showMessage(String message) {
-		MessageDialog.openInformation(getSite().getShell(), null, message);
+		MessageDialog.openInformation(getSite().getShell(), "Codesearch", message);
 	}
-
-	public class CodeSearchAction implements IViewActionDelegate {
-		
-		private CodeSearchView view;
-
-		public void init(IViewPart view) {
-			this.view = (CodeSearchView) view;
-		}
-
-		public void run(IAction action) {
-			String id = action.getId();
-			if ("org.adsf.codesearch.buttons.next".equals(id)) {
-				view.next();
-			} else if ("org.adsf.codesearch.buttons.previous".equals(id)) {
-				view.previous();
-			}
-		}
-
-		public void selectionChanged(IAction action, ISelection selection) {
-			// this action does not listen for selections
-		}
-
-	}
-
-	/**
+    
+    
+    /**
 	 * @author jvu
 	 *
 	 */
@@ -181,15 +174,14 @@ public class CodeSearchView extends ViewPart {
 
 		public void run() {
 			try {
+                // convert spaces to +
 				String[] keywords = this.string.split(" ");
 				String fixedSearchString = join(keywords, "+");
-				URL feedUrl = new URL("http://www.google.com/codesearch/feeds/search?q=" + fixedSearchString);
 				System.out.println(fixedSearchString);
-				
+                
+				URL feedUrl = new URL("http://www.google.com/codesearch/feeds/search?q=" + fixedSearchString);
 				CodeSearchFeed resultFeed = myService.getFeed(feedUrl, CodeSearchFeed.class);
-				
 				entries = resultFeed.getEntries();
-				
 				System.out.println("Found " + entries.size() + " results.");
 				
 				if (entries.size() > 0) {
