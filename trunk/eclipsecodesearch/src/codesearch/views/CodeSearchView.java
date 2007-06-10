@@ -1,28 +1,28 @@
 package codesearch.views;
 
-import com.google.gdata.client.codesearch.CodeSearchService;
-import com.google.gdata.data.codesearch.CodeSearchEntry;
-import com.google.gdata.data.codesearch.CodeSearchFeed;
-import com.google.gdata.util.ServiceException;
-
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
-import java.net.Proxy;
-import java.net.SocketAddress;
 import java.net.URL;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
+
+import codesearch.Activator;
+
+import com.google.gdata.client.codesearch.CodeSearchService;
+import com.google.gdata.data.codesearch.CodeSearchEntry;
+import com.google.gdata.data.codesearch.CodeSearchFeed;
+import com.google.gdata.util.ServiceException;
 
 
 
@@ -35,11 +35,6 @@ public class CodeSearchView extends ViewPart {
 	// TODO add big browser window
 	// TODO add search from context menu in editor
 	
-    //  TODO move this to preferences
-//    private String proxy = "proxy.zuehlke.com";
-//    private int port = 8080;
-//    private boolean useProxy = true;
-    
 	public static final String ID = "codesearch.views.CodeSearchView";
 	
 	private Text area;
@@ -54,15 +49,18 @@ public class CodeSearchView extends ViewPart {
 
 	CodeSearchService myService = new CodeSearchService("exampleCo-exampleApp-1");
 
+	public static CodeSearchView getInstance() throws PartInitException {
+		IWorkbenchPage activePage = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		return (CodeSearchView) activePage.showView(CodeSearchView.ID);
+	}
+
+	
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
 	 * it.
 	 * {@inheritDoc}
 	 */
 	public void createPartControl(Composite parent) {
-//        System.setProperty("http.proxyHost", proxy);
-//        System.setProperty("http.proxyPort", Integer.toString(port));
-//        System.setProperty("http.proxySet", Boolean.toString(useProxy));
         
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 1;
@@ -152,7 +150,7 @@ public class CodeSearchView extends ViewPart {
 		showMessage("testing");
 	}
 	
-	private void search(final String searchString) {
+	public void search(final String searchString) {
 		new Searcher(searchString).start();
 	}
 

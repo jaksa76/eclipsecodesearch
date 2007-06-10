@@ -52,5 +52,17 @@
                tooltip="Previous Example"/>
       </viewContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="codesearch.editorContributions.popup"
+            targetID="#CompilationUnitEditorContext">
+         <action
+               class="codesearch.views.CodeSearchAction"
+               id="org.asdf.codesearch.actions.search"
+               label="Lookup using CodeSearch"
+               menubarPath="additions"/>
+      </viewerContribution>
+   </extension>
 
 </plugin>

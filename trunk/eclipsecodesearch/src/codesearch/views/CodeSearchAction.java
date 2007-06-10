@@ -1,42 +1,42 @@
-/*
-* We reserve all rights in this document and in the information contained 
-* therein. Reproduction, use or disclosure to third parties without express
-* authority is strictly forbidden.
-* 
-* Copyright(c) ALSTOM (Switzerland) Ltd. 2007
-*/
-
-
 package codesearch.views;
 
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IEditorActionDelegate;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.PartInitException;
 
-public class CodeSearchAction implements IViewActionDelegate {
-        
-        private CodeSearchView view;
+public class CodeSearchAction implements IViewActionDelegate, IEditorActionDelegate {
 
-        public CodeSearchAction() {
-//            codeSearchView = view;
-        }
+	private IEditorPart currentEditor;
+	private String selectionFromEditor;
 
-        public void init(IViewPart view) {
-            this.view = (CodeSearchView) view;
-        }
+	public void init(IViewPart view) {}
 
-        public void run(IAction action) {
-            String id = action.getId();
-            if ("org.adsf.codesearch.buttons.next".equals(id)) {
-                view.next();
-            } else if ("org.adsf.codesearch.buttons.previous".equals(id)) {
-                view.previous();
-            }
-        }
+	public void run(IAction action) {
+		try {
+			String id = action.getId();
+			CodeSearchView view = CodeSearchView.getInstance();
+			
+			if ("org.adsf.codesearch.buttons.next".equals(id)) {
+				view.next();
+			} else if ("org.adsf.codesearch.buttons.previous".equals(id)) {
+				view.previous();
+			} else if ("org.asdf.codesearch.actions.search".equals(id)) {
+				if (selectionFromEditor != null) view.search(selectionFromEditor);
+			}
+		} catch (PartInitException e) { e.printStackTrace(); }
+	}
 
-        public void selectionChanged(IAction action, ISelection selection) {
-            // this action does not listen for selections
-        }
+	public void selectionChanged(IAction action, ISelection selection) {
+		if (selection instanceof TextSelection) // some text has been selected in the editor
+			selectionFromEditor = ((TextSelection) selection).getText();
+	}
 
-    }
+	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
+		this.currentEditor = targetEditor;
+	}
+}
