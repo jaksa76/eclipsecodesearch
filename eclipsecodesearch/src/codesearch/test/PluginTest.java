@@ -1,6 +1,3 @@
-/**
- * 
- */
 package codesearch.test;
 
 import codesearch.Activator;

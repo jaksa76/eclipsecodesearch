@@ -1,12 +1,3 @@
-/*
-* We reserve all rights in this document and in the information contained 
-* therein. Reproduction, use or disclosure to third parties without express
-* authority is strictly forbidden.
-* 
-* Copyright(c) ALSTOM (Switzerland) Ltd. 2007
-*/
-
-
 package codesearch.test;
 
 import com.google.gdata.client.Service.GDataRequest;
