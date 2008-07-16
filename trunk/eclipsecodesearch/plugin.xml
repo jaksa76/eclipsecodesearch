@@ -38,7 +38,7 @@
                class="codesearch.views.CodeSearchAction"
                icon="icons/next.gif"
                id="org.adsf.codesearch.buttons.next"
-               label="next"
+               label="Next"
                style="push"
                toolbarPath="navigation"
                tooltip="Next Example"/>
@@ -46,10 +46,19 @@
                class="codesearch.views.CodeSearchAction"
                icon="icons/previous.gif"
                id="org.adsf.codesearch.buttons.previous"
-               label="previous"
+               label="Previous"
                style="push"
                toolbarPath="navigation"
                tooltip="Previous Example"/>
+         <action
+               class="codesearch.views.CodeSearchAction"
+               icon="icons/sample.gif"
+               id="org.adsf.codesearch.buttons.openInBrowser"
+               label="Open in Browser Window"
+               style="push"
+               toolbarPath="additions"
+               tooltip="Open the example in a browser window">
+         </action>
       </viewContribution>
    </extension>
    <extension

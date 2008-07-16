@@ -8,11 +8,13 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 
 public class CodeSearchAction implements IViewActionDelegate, IEditorActionDelegate {
 
 	private IEditorPart currentEditor;
 	private String selectionFromEditor;
+
 
 	public void init(IViewPart view) {}
 
@@ -27,6 +29,8 @@ public class CodeSearchAction implements IViewActionDelegate, IEditorActionDeleg
 				view.previous();
 			} else if ("org.asdf.codesearch.actions.search".equals(id)) {
 				if (selectionFromEditor != null) view.search(selectionFromEditor);
+			} else if ("org.adsf.codesearch.buttons.openInBrowser".equals(id)) {
+			  view.openInBrowser();
 			}
 		} catch (PartInitException e) { e.printStackTrace(); }
 	}

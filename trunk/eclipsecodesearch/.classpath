@@ -5,22 +5,22 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="lib/gdata-calendar-1.0.jar">
 		<attributes>
-			<attribute value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/" name="javadoc_location"/>
+			<attribute name="javadoc_location" value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/gdata-client-1.0.jar">
 		<attributes>
-			<attribute value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/" name="javadoc_location"/>
+			<attribute name="javadoc_location" value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/gdata-codesearch-1.0.jar">
 		<attributes>
-			<attribute value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/" name="javadoc_location"/>
+			<attribute name="javadoc_location" value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/gdata-spreadsheet-1.0.jar">
 		<attributes>
-			<attribute value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/" name="javadoc_location"/>
+			<attribute name="javadoc_location" value="file:/C:/Documents and Settings/jvu/My Documents/software/gdata/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
