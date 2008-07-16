@@ -12,9 +12,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.eclipse.ui.part.ViewPart;
 
 import codesearch.Activator;
@@ -46,7 +48,7 @@ public class CodeSearchView extends ViewPart {
 	private List<CodeSearchEntry> entries; // the feed entries
 
 	private Text searchString;
-
+	
 	CodeSearchService myService = new CodeSearchService("exampleCo-exampleApp-1");
 
 	public static CodeSearchView getInstance() throws PartInitException {
@@ -103,7 +105,7 @@ public class CodeSearchView extends ViewPart {
 	 * @param parent
 	 */
 	private void createBrowser(Composite parent) {
-		browser = new Browser(parent, SWT.NONE);
+		browser = new Browser(parent, SWT.BORDER);
 		GridData gridData2 = new org.eclipse.swt.layout.GridData();
 		gridData2.grabExcessVerticalSpace = true;
 		gridData2.grabExcessHorizontalSpace = true;
@@ -116,7 +118,7 @@ public class CodeSearchView extends ViewPart {
 	 * @param parent
 	 */
 	private void createSearchString(Composite parent) {
-		searchString = new Text(parent, SWT.NONE);
+		searchString = new Text(parent, SWT.BORDER);
 		GridData gridData1 = new org.eclipse.swt.layout.GridData();
 		gridData1.grabExcessHorizontalSpace = true;
 		gridData1.horizontalAlignment = GridData.FILL;
@@ -125,7 +127,7 @@ public class CodeSearchView extends ViewPart {
 	}
 
 	private void createTextArea(Composite parent) {
-		area = new Text(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		area = new Text(parent, SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		GridData gridData2 = new org.eclipse.swt.layout.GridData();
 		gridData2.grabExcessVerticalSpace = true;
 		gridData2.grabExcessHorizontalSpace = true;
@@ -222,6 +224,16 @@ public class CodeSearchView extends ViewPart {
 			}
 		}
 	}
-	
 
+  public void openInBrowser() {
+    try {
+      IWorkbenchBrowserSupport browserSupport = getSite().getWorkbenchWindow().getWorkbench().getBrowserSupport();
+      URL url = new URL(browser.getUrl());
+      browserSupport.createBrowser("codesearch.browser").openURL(url);
+    } catch (PartInitException e) {
+      throw new RuntimeException(e); // this should never happen
+    } catch (MalformedURLException e) {
+      throw new RuntimeException(e); // this should never happen
+    }
+  }
 }
