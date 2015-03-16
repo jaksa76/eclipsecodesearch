@@ -1,0 +1,1 @@
+A Plugin for Eclipse to perform searches using Google Code Search. If you don't know what's Google Code Search go to http://codesearch.google.com and type 'System.out.println'.
